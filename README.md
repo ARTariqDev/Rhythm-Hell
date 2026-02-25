@@ -111,8 +111,7 @@ rythm-hell/
 │   ├── diary_system.gd     # Lore/story system
 │   ├── jumpscare_layer.gd  # Jumpscare effect
 │   └── title_card_layer.gd # Title card display
-└── art/
-    └── (Your art assets here)
+
 ```
 
 ## Assets Needed
