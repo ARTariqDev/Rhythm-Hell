@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxk3nqj5rt2y"]
+
+[ext_resource type="Script" path="res://scripts/rhythm_manager.gd" id="1"]
+
+[node name="RhythmManager" type="Node"]
+script = ExtResource("1")

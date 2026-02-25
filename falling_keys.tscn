@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh80x35ku0vuh"]
+
+[ext_resource type="Script" uid="uid://cl3oon7saporx" path="res://scripts/falling_keys.gd" id="1_ernoq"]
+
+[node name="FallingKeys" type="Node2D"]
+script = ExtResource("1_ernoq")

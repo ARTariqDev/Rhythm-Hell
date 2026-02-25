@@ -1,0 +1,13 @@
+[remap]
+
+importer="videostream"
+type="VideoStreamTheora"
+uid="uid://dq7xb8yvmkcp5"
+path="res://.godot/imported/jumpscare.mp4-e8f4c6a3b2d1f9a8c7e5d4b3a2f1e0d9.ogvstr"
+
+[deps]
+
+source_file="res://jumpscares/jumpscare.mp4"
+dest_files=["res://.godot/imported/jumpscare.mp4-e8f4c6a3b2d1f9a8c7e5d4b3a2f1e0d9.ogvstr"]
+
+[params]

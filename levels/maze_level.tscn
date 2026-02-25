@@ -1,0 +1,164 @@
+[gd_scene load_steps=13 format=3 uid="uid://maze_level_scene"]
+
+[ext_resource type="Script" path="res://scripts/maze_level.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/maze_generator.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/monster.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/rhythm_manager.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/lure_system.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/diary_system.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/jumpscare_layer.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://lose_screen_scene" path="res://lose_screen.tscn" id="9"]
+[ext_resource type="Script" path="res://scripts/music_manager.gd" id="10"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(48, 48)
+
+[node name="MazeLevel" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="MazeGenerator" type="Node2D" parent="."]
+script = ExtResource("2")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("3")
+
+[node name="Sprite2D" type="ColorRect" parent="Player"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("1")
+
+[node name="Monster" type="CharacterBody2D" parent="."]
+script = ExtResource("4")
+
+[node name="Sprite2D" type="ColorRect" parent="Monster"]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Monster"]
+shape = SubResource("2")
+
+[node name="RhythmManager" type="Node" parent="."]
+script = ExtResource("5")
+
+[node name="LureSystem" type="CanvasLayer" parent="."]
+script = ExtResource("6")
+
+[node name="LuresUI" type="VBoxContainer" parent="LureSystem"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="LuresLabel" type="Label" parent="LureSystem/LuresUI"]
+layout_mode = 2
+text = "Lures: 3"
+theme_override_font_sizes/font_size = 24
+
+[node name="TimerLabel" type="Label" parent="LureSystem/LuresUI"]
+layout_mode = 2
+text = "Time: 00:00"
+theme_override_font_sizes/font_size = 20
+
+[node name="WarningLabel" type="Label" parent="LureSystem"]
+offset_left = 300.0
+offset_top = 100.0
+offset_right = 852.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "⚠ WARNING ⚠"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiarySystem" type="CanvasLayer" parent="."]
+script = ExtResource("7")
+
+[node name="DiaryPanel" type="Panel" parent="DiarySystem"]
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 952.0
+offset_bottom = 548.0
+
+[node name="DiaryText" type="RichTextLabel" parent="DiarySystem/DiaryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Diary entry..."
+fit_content = true
+
+[node name="CloseButton" type="Button" parent="DiarySystem/DiaryPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[node name="RhythmGameUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="RhythmGameUI"]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 1052.0
+offset_bottom = 598.0
+
+[node name="Label" type="Label" parent="RhythmGameUI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Rhythm Challenge!"
+horizontal_alignment = 1
+
+[node name="JumpscareLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8")
+
+[node name="JumpscareSprite" type="Sprite2D" parent="JumpscareLayer"]
+position = Vector2(576, 324)
+
+[node name="ScreamAudio" type="AudioStreamPlayer" parent="JumpscareLayer"]
+
+[node name="LoseScreen" parent="." instance=ExtResource("9")]
+
+[node name="MusicManager" type="AudioStreamPlayer" parent="."]
+script = ExtResource("10")
